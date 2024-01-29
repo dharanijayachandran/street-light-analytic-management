@@ -1,0 +1,44 @@
+{
+  "name": "global",
+  "version": "0.0.4",
+  "peerDependencies": {
+    "@angular/common": "^9.0.7",
+    "@angular/core": "^9.0.7"
+  },
+  "dependencies": {
+    "@angular/cdk": "~9.1.2",
+    "@angular/localize": "~9.0.6",
+    "@angular/material": "~9.1.2",
+    "@ng-bootstrap/ng-bootstrap": "~7.0.0",
+    "@syncfusion/ej2-base": "~18.1.42",
+    "angular2-multiselect-dropdown": "^4.6.3",
+    "angular7-csv": "~0.2.12",
+    "exceljs": "~4.2.0",
+    "faker": "~5.1.0",
+    "file-saver": "~2.0.2",
+    "font-awesome": "^4.7.0",
+    "jquery": "~3.4.1",
+    "jspdf": "~2.1.1",
+    "jspdf-autotable": "~3.5.13",
+    "ng2-slim-loading-bar": "~4.0.0",
+    "ngx-perfect-scrollbar": "^9.0.0",
+    "ngx-toastr": "~12.0.0",
+    "rxjs": "~6.5.4",
+    "rxjs-compat": "~6.2.0",
+    "sweetalert2": "~9.10.1",
+    "xlsx": "~0.15.6",
+    "tslib": "^1.10.0"
+  },
+  "main": "bundles/global.umd.js",
+  "module": "fesm5/global.js",
+  "es2015": "fesm2015/global.js",
+  "esm5": "esm5/global.js",
+  "esm2015": "esm2015/global.js",
+  "fesm5": "fesm5/global.js",
+  "fesm2015": "fesm2015/global.js",
+  "typings": "global.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\\n')\" && exit 1"
+  }
+}

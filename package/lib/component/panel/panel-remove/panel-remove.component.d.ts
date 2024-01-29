@@ -1,0 +1,32 @@
+import { AfterViewInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as i0 from "@angular/core";
+export declare class PanelRemoveComponent implements AfterViewInit {
+    private modalService;
+    panelFooter: any;
+    modelNotification: any;
+    title: string;
+    variant: boolean;
+    noBody: boolean;
+    noButton: boolean;
+    bodyClass: boolean;
+    footerClass: boolean;
+    panelClass: boolean;
+    reload: boolean;
+    collapse: boolean;
+    remove: boolean;
+    closeResult: string;
+    showFooter: boolean;
+    lineWidgetForm: boolean;
+    expand: boolean;
+    constructor(modalService: NgbModal, document: any);
+    ngAfterViewInit(): void;
+    panelReload(): void;
+    panelCollapse(): void;
+    panelRemove(): void;
+    openFormModel(content: any, test: string): void;
+    private getDismissReason;
+    panelExpand(): void;
+    static ɵfac: i0.ɵɵFactoryDef<PanelRemoveComponent>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<PanelRemoveComponent, "app-panel-remove", never, { "title": "title"; "variant": "variant"; "noBody": "noBody"; "noButton": "noButton"; "bodyClass": "bodyClass"; "footerClass": "footerClass"; "panelClass": "panelClass"; }, {}, never>;
+}

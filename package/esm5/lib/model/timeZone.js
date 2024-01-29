@@ -1,0 +1,7 @@
+var TimeZone = /** @class */ (function () {
+    function TimeZone() {
+    }
+    return TimeZone;
+}());
+export { TimeZone };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGltZVpvbmUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9nbG9iYWwvIiwic291cmNlcyI6WyJsaWIvbW9kZWwvdGltZVpvbmUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFBQTtJQVNBLENBQUM7SUFBRCxlQUFDO0FBQUQsQ0FBQyxBQVRELElBU0MiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY2xhc3MgVGltZVpvbmV7XHJcbiAgICBpZDogbnVtYmVyO1xyXG4gICAgbmFtZTogc3RyaW5nO1xyXG4gICAgYWJicmV2aWF0aW9uOnN0cmluZztcclxuICAgIGNyZWF0ZWRPbjogRGF0ZTtcclxuICAgIHVwZGF0ZWRPbjogRGF0ZTtcclxuICAgIGNyZWF0ZWRCeTogbnVtYmVyO1xyXG4gICAgdXBkYXRlZEJ5OiBudW1iZXI7XHJcbiAgICBzdGF0dXM6IHN0cmluZztcclxufSJdfQ==

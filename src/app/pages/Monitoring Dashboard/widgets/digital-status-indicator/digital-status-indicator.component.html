@@ -1,0 +1,101 @@
+<app-panel-user name="Digital Status Indicator" #panelHeader (refreshTableList)="refreshDigitalStatusDataInTable()">
+  <div class="position-relative">
+    <div class="table-responsive ps position-relative" 
+      appScrollbarDirective *ngIf="dataSource && dataSource.data.length">
+      <ng-container *ngTemplateOutlet="matTableForDigitalStatusIndicator"></ng-container>
+    </div> 
+
+    <div class="" *ngIf="!dataSource || !dataSource.data.length">
+      <ng-container *ngTemplateOutlet="matTableForDigitalStatusIndicator"></ng-container>
+    </div> 
+
+     <!-- Loader image  -->
+    <div *ngIf="showLoaderImage" class="col-lg-12" style="margin-left: 0%; margin-top: 0%; margin-bottom: 0%"
+      align="center">
+      <img src="/assets/street-light/img/dashboard/ProgressLoader.gif" height="auto" width="50%"
+        alt="Loading........" />
+    </div>
+    <!-- NoRecordFound -->
+     <h3 i18n="No records found text|No records found@@noRecordsFound" *ngIf="noRecordsFound" class="text-center noRecordsFound">
+     No records found!
+     </h3>
+  </div>
+  <ng-template #matTableForDigitalStatusIndicator>
+  <mat-table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="name" >
+    <mat-header-cell mat-header-cell *matHeaderCellDef  i18n="Table|Building@@building"> 
+      Site 
+    </mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let data" > 
+      <span mat-icon-button 
+              [style.visibility]="!data.expandable ? 'hidden' : ''"
+              [style.marginLeft.px]="data.level * 12"
+              (click)="treeControl.toggle(data)">
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{treeControl.isExpanded(data) ? 'minimize' : 'add_circle_outline'}}
+        </mat-icon>
+      </span>
+      {{data.name}}
+    </mat-cell>
+  </ng-container> 
+  
+  <ng-container matColumnDef="total" >
+    <mat-header-cell mat-header-cell *matHeaderCellDef class="w-9" i18n="Table|Total Alarms@@totalAlarms"> 
+      <div *ngIf="undefined!=statusIndicatorTotalCount" style="text-align: left;">Total
+      <br>[{{statusIndicatorTotalCount.grandTotal}}]</div>  
+    </mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let data"> 
+      <ng-container *ngIf="data.total.statusCount > 0; else zeroTemplate">
+      <div *ngIf="data.expandable==true">{{data.total.statusCount}}</div>
+      <div *ngIf="data.expandable==false"><a href="#/assets/pages/asset-details?id={{data.siteId}}&typeCode=SITE&statusAssetIds={{data.total.assetIds}}">
+      {{data.total.statusCount}}</a></div>
+    </ng-container></mat-cell>
+  </ng-container> 
+
+  <ng-container matColumnDef="lightoff">
+  <mat-header-cell mat-header-cell *matHeaderCellDef class="w-9" i18n="Table|Latest Alarm Time & Date@@LatestAlarmtimeDate"> 
+    <div *ngIf="undefined!=statusIndicatorTotalCount" style="text-align: left;">Light OFF
+    <br>[{{statusIndicatorTotalCount.lightOff}}]</div>  
+  </mat-header-cell>
+  <mat-cell mat-cell *matCellDef="let data">  
+    <ng-container *ngIf="data.lightOff.statusCount > 0; else zeroTemplate">
+    <div *ngIf="data.expandable==true">{{data.lightOff.statusCount}}</div>
+    <div *ngIf="data.expandable==false"><a href="#/assets/pages/asset-details?id={{data.siteId}}&typeCode=SITE&statusAssetIds={{data.lightOff.assetIds}}">
+      {{data.lightOff.statusCount}}</a></div> 
+  </ng-container></mat-cell>
+  </ng-container>
+  
+  <ng-container matColumnDef="lighton">
+<mat-header-cell mat-header-cell *matHeaderCellDef class="w-9" i18n="Table|Latest Alarm Time & Date@@LatestAlarmtimeDate"> 
+  <div *ngIf="undefined!=statusIndicatorTotalCount" style="text-align: left;">Light ON
+    <br>[{{statusIndicatorTotalCount.lightOn}}]</div>  
+</mat-header-cell>
+<mat-cell mat-cell *matCellDef="let data">  
+  <ng-container *ngIf="data.lightOn.statusCount > 0; else zeroTemplate">
+  <div *ngIf="data.expandable==true">{{data.lightOn.statusCount}}</div>
+  <div *ngIf="data.expandable==false"><a href="#/assets/pages/asset-details?id={{data.siteId}}&typeCode=SITE&statusAssetIds={{data.lightOn.assetIds}}">
+    {{data.lightOn.statusCount}}</a></div> 
+</ng-container></mat-cell>
+</ng-container> 
+
+<ng-container matColumnDef="idle">
+<mat-header-cell mat-header-cell *matHeaderCellDef class="w-9" i18n="Table|Latest Alarm Time & Date@@LatestAlarmtimeDate"> 
+  <div *ngIf="undefined!=statusIndicatorTotalCount" style="text-align: left;">Idle
+  <br>[{{statusIndicatorTotalCount.idle}}]</div>  
+</mat-header-cell>
+<mat-cell mat-cell *matCellDef="let data">
+  <ng-container *ngIf="data.idle.statusCount > 0; else zeroTemplate">
+  <div *ngIf="data.expandable==true">{{data.idle.statusCount}}</div>
+  <div *ngIf="data.expandable==false"><a href="#/assets/pages/asset-details?id={{data.siteId}}&typeCode=SITE&statusAssetIds={{data.idle.assetIds}}">
+    {{data.idle.statusCount}}</a></div>
+</ng-container></mat-cell>
+</ng-container> 
+
+  <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+</ng-template>
+  <ng-template #zeroTemplate>
+    0
+  </ng-template>
+</app-panel-user>

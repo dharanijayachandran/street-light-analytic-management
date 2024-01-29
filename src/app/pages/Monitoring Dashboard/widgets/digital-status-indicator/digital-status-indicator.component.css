@@ -1,0 +1,42 @@
+mat-mdc-table {
+  max-height: 350px;
+  overflow: auto;
+  margin-bottom: 10px;
+}
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-thumb { 
+  background: rgb(194, 193, 193);
+  border-radius: 10px;
+}
+.material-icons{
+font-size: 15px;
+}
+.mat-mdc-column-name{
+flex: 0 0 30% !important;
+cursor: pointer;
+}
+.mat-mdc-row{
+min-height: 32px;
+}
+.mat-mdc-header-cell{
+  padding-left: 12px;
+  font-weight: bolder;
+  color: rgb(106, 117, 143);
+  border-right: 0.2px solid rgb(241, 242, 243);
+}
+.mat-mdc-cell{
+  padding-left: 12px;
+}
+
+@media screen and (min-width: 280px) and (max-width: 900px){
+.mat-mdc-column-name{
+  flex: 0 0 40% !important;
+  cursor: pointer;
+}
+.mat-mdc-column-total{
+  padding: 4px;
+}
+}
+

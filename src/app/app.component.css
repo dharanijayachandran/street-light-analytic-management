@@ -1,0 +1,21 @@
+.top-content{
+    padding-top: 45px;
+    padding-right: 24px;
+    padding-bottom: 0px;
+    padding-left: 24px
+}
+body {
+    display:inline-flex;
+  }
+  
+  @media screen and (min-width: 400px) {
+    body {
+        display:inline-flex;
+    }
+  }
+  
+  @media screen and (min-width: 800px) {
+    body {
+      display:inline-flex;
+    }
+  }

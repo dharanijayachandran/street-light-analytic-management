@@ -1,0 +1,33 @@
+import { EventEmitter } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as i0 from "@angular/core";
+export declare class UIModalNotificationPage {
+    private modalService;
+    closeResult: string;
+    inputField: boolean;
+    remark: any;
+    constructor(modalService: NgbModal);
+    open(content: any): void;
+    private getDismissReason;
+    alertMessage(messageType: any, message: any): void;
+    modelNotificationInfo: EventEmitter<any>;
+    swalInfo(message: any): void;
+    modelNotificationSuccess: EventEmitter<any>;
+    swalSuccess(message: any): void;
+    modelNotificationWarning: EventEmitter<any>;
+    swalWarning(message: any): void;
+    modelNotificationWarningAlarm: EventEmitter<any>;
+    swalWarningAlarm(message: any): void;
+    modelNotificationDanger: EventEmitter<any>;
+    swalDanger(message: any): void;
+    modelNotificationError: EventEmitter<any>;
+    swalErrorInfo(message: any): void;
+    modelNotificationAlarmMessage: EventEmitter<any>;
+    swalAlarmMessage(message: any): void;
+    modelNotificationClearMessage: EventEmitter<any>;
+    swalClearMessage(message: any): void;
+    helpMessage(message: any): void;
+    swalHelp(message: any): void;
+    static ɵfac: i0.ɵɵFactoryDef<UIModalNotificationPage>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<UIModalNotificationPage, "app-modal-notification", never, {}, { "modelNotificationInfo": "modelNotificationInfo"; "modelNotificationSuccess": "modelNotificationSuccess"; "modelNotificationWarning": "modelNotificationWarning"; "modelNotificationWarningAlarm": "modelNotificationWarningAlarm"; "modelNotificationDanger": "modelNotificationDanger"; "modelNotificationError": "modelNotificationError"; "modelNotificationAlarmMessage": "modelNotificationAlarmMessage"; "modelNotificationClearMessage": "modelNotificationClearMessage"; }, never>;
+}

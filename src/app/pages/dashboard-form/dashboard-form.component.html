@@ -1,0 +1,58 @@
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-6 -->
+    <div class="col-lg-12">
+        <!-- begin nav-tabs -->
+        <ngb-tabset type="pills">
+            <ngb-tab id="monitoring">
+                <ng-template ngbTabTitle>
+                    <span class="d-sm-none">Monitoring</span>
+                    <span class="d-sm-block d-none">Monitoring</span>
+                </ng-template>
+                <ng-template ngbTabContent>
+                    <div class="rowBox_withOutBorderTop custom-rounded-bottom">
+                        
+                        <street-light-analytic-management-monitoring-dashboard>
+                        </street-light-analytic-management-monitoring-dashboard>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+
+            <ngb-tab id="usage">
+                <ng-template ngbTabTitle>
+                    <span class="d-sm-none">Usage</span>
+                    <span class="d-sm-block d-none">Usage</span>
+                </ng-template>
+                <ng-template ngbTabContent>
+                    <div id="tags">
+                        <!-- Generate Continuous view -->
+                        <div class="rowBox_withOutBorderTop custom-rounded-bottom">
+                            <street-light-analytic-management-usage-dashboard>
+                            </street-light-analytic-management-usage-dashboard>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+
+            <ngb-tab id="expenses">
+                <ng-template ngbTabTitle>
+                    <span class="d-sm-none">Expenses</span>
+                    <span class="d-sm-block d-none">Expenses</span>
+                </ng-template>
+                <ng-template ngbTabContent>
+                    <div id="tags">
+                        <!-- Generate Continuous view -->
+                        <div class="rowBox_withOutBorderTop custom-rounded-bottom">
+                            <street-light-analytic-management-expenses-dashboard>
+                            </street-light-analytic-management-expenses-dashboard>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+        <!-- end nav-tabs -->
+    </div>
+    <!-- end col-6 -->
+
+</div>
+<!-- end row -->

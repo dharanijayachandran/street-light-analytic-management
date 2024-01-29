@@ -1,0 +1,88 @@
+<app-panel-user  name="Status Indicator" #panelHeader (refreshTableList)="refreshStatusIndicatorDataInTable()">
+    <div class="position-relative">
+    <div class="table-responsive ps position-relative" 
+      appScrollbarDirective *ngIf="dataSource && dataSource.data.length">
+      <ng-container *ngTemplateOutlet="matTableForStatusIndicator"></ng-container>
+    </div>
+
+    <div class="" *ngIf="!dataSource || !dataSource.data.length">
+      <ng-container *ngTemplateOutlet="matTableForStatusIndicator"></ng-container>
+    </div>
+
+    <!-- Loader image  -->
+    <div *ngIf="showLoaderImage" class="col-lg-12" style="margin-left: 0%; margin-top: 0%; margin-bottom: 0%"
+      align="center">
+      <img src="/assets/street-light/img/dashboard/ProgressLoader.gif" height="auto" width="50%"
+        alt="Loading........" />
+    </div>
+    <!-- NoRecordFound -->
+     <h3 i18n="No records found text|No records found@@noRecordsFound" *ngIf="noRecordsFound" class="text-center noRecordsFound">
+     No records found!
+     </h3>
+  </div>
+  <ng-template #matTableForStatusIndicator>
+    <mat-table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="name" >
+        <mat-header-cell mat-header-cell *matHeaderCellDef class="w-15" i18n="Table|Building@@building"> 
+          Site 
+        </mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let data" > 
+          <span mat-icon-button 
+                  [style.visibility]="!data.expandable ? 'hidden' : ''"
+                  [style.marginLeft.px]="data.level * 12"
+                  (click)="treeControl.toggle(data)">
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControl.isExpanded(data) ? 'minimize' : 'add_circle_outline'}}
+            </mat-icon>
+          </span>
+          {{data.name}}
+        </mat-cell>
+      </ng-container> 
+      
+      <ng-container matColumnDef="total" >
+        <mat-header-cell mat-header-cell *matHeaderCellDef class="w-9" i18n="Table|Total Alarms@@totalAlarms"> 
+          <div *ngIf="undefined!=statusIndicatorTotalCount" style="text-align: left;">Total
+          <br>[{{statusIndicatorTotalCount.grandTotal}}]</div>  
+        </mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let data"> 
+          <ng-container *ngIf="data.total.statusCount > 0; else zeroTemplate">
+          <div *ngIf="data.expandable==true">{{data.total.statusCount}}</div>
+          <div *ngIf="data.expandable==false"><a href="#/assets/pages/asset-details?id={{data.siteId}}&typeCode=SITE&statusAssetIds={{data.total.assetIds}}">
+            {{data.total.statusCount}}</a></div>
+        </ng-container></mat-cell>
+      </ng-container> 
+    
+      <ng-container matColumnDef="gatewayDown">
+      <mat-header-cell mat-header-cell *matHeaderCellDef class="w-9" i18n="Table|Latest Alarm Time & Date@@LatestAlarmtimeDate"> 
+        <div *ngIf="undefined!=statusIndicatorTotalCount" style="text-align: left;">Gateways Down
+        <br>[{{statusIndicatorTotalCount.gatewayDown}}]</div>
+      </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let data">
+        <ng-container *ngIf="data.gatewayDown.statusCount > 0; else zeroTemplate">
+        <div *ngIf="data.expandable==true">{{data.gatewayDown.statusCount}}</div>
+        <div *ngIf="data.expandable==false"><a href="#/assets/pages/asset-details?id={{data.siteId}}&typeCode=SITE&statusAssetIds={{data.gatewayDown.assetIds}}">
+          {{data.gatewayDown.statusCount}}</a></div> 
+      </ng-container></mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="gatewayUp">
+    <mat-header-cell mat-header-cell *matHeaderCellDef class="w-9" i18n="Table|Latest Alarm Time & Date@@LatestAlarmtimeDate"> 
+      <div *ngIf="undefined!=statusIndicatorTotalCount" style="text-align: left;">Gateways Up
+        <br>[{{statusIndicatorTotalCount.gatewayUp}}]</div>  
+    </mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let data">  
+      <ng-container *ngIf="data.gatewayUp.statusCount > 0; else zeroTemplate">
+      <div *ngIf="data.expandable==true">{{data.gatewayUp.statusCount}}</div>
+      <div *ngIf="data.expandable==false"><a href="#/assets/pages/asset-details?id={{data.siteId}}&typeCode=SITE&statusAssetIds={{data.gatewayUp.assetIds}}">
+        {{data.gatewayUp.statusCount}}</a></div> 
+    </ng-container></mat-cell>
+    </ng-container> 
+    
+      <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </ng-template>
+  <ng-template #zeroTemplate>
+    0
+  </ng-template>
+</app-panel-user>

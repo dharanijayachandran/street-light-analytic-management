@@ -1,0 +1,222 @@
+<div class="row">
+  <div class="col-md-6" >
+    <app-panel-user name="Energy Expenses - Today" #panelHeaderEet (refreshTableList)="getEnergyExpensesForToday()"
+      (panelExpandCollapse)="maxOrMinScreenEet()">
+      <div *ngIf="this.pieChartTodayExpensesData &&  todayzeroDataStatus== false">
+        <ejs-accumulationchart id="eet" #chartEet [enableBorderOnMouseMove]='enableBorderOnMouseMove' [tooltip]="tooltip"
+        [legendSettings]="legendSettings" [enableSmartLabels]="enableSmartLabel" height="auto"
+        (textRender)="onTextRender($event)" (chartMouseClick)="onChartMouseClickeet($event)" class="arrow_right">
+          <e-accumulation-series-collection >
+            <e-accumulation-series [dataSource]="pieChartTodayExpensesData" xName="name" yName="value"
+            [dataLabel]="pieChartLabel" [palettes]='palette' type="Pie"radius="auto" tooltipMappingName='valueWithEng'>
+            </e-accumulation-series>
+          </e-accumulation-series-collection>
+        </ejs-accumulationchart>
+      </div>
+      <div *ngIf="todayzeroDataStatus && !this.showLoaderImageForToday">
+        <h3 class="text-center noRecordsFound" style="margin-top: 20%;"> No records found!</h3>
+      </div>
+      <div *ngIf="this.showLoaderImageForToday" class="col-md-16"
+        style="margin-left: 0%; margin-top: 0%; margin-bottom:0%; height: 300px" align="center">
+        <img src="/assets/street-light/img/dashboard/ProgressLoader.gif" height="auto" width="50%"
+          alt="Loading........" />
+      </div>
+    </app-panel-user>
+
+  </div>
+  <div class="col-md-6">
+    <app-panel-user name="Energy Expenses - Yesterday" #panelHeaderEey
+      (refreshTableList)="getEnergyExpensesForYesterday()" (panelExpandCollapse)="maxOrMinScreenEey()">
+      <div *ngIf="this.pieChartYesterDayExpensesData &&  yesterdayzeroDataStatus== false">
+        <ejs-accumulationchart  id="eey" #chartEey [enableBorderOnMouseMove]='enableBorderOnMouseMove' [tooltip]="tooltip"
+        [legendSettings]="legendSettings" [enableSmartLabels]="enableSmartLabel" height="auto"
+        (textRender)="onTextRender($event)" (chartMouseClick)="onChartMouseClickeey($event)" class="arrow_right">
+          <e-accumulation-series-collection>
+            <e-accumulation-series [dataSource]="pieChartYesterDayExpensesData" xName="name" yName="value" type="Pie"
+              tooltipMappingName='valueWithEng' [dataLabel]="pieChartLabel" radius="auto" [palettes]='palette'>
+            </e-accumulation-series>
+          </e-accumulation-series-collection>
+        </ejs-accumulationchart>
+
+      </div>
+      <div *ngIf="yesterdayzeroDataStatus && !showLoaderImageForYesterDay">
+        <h3 class="text-center noRecordsFound" style="margin-top: 20%;"> No records found!</h3>
+      </div>
+      <div *ngIf="showLoaderImageForYesterDay" class="col-md-16"
+        style="margin-left: 0%; margin-top: 0%; margin-bottom:0% ; height: 300px" align="center">
+        <img src="/assets/street-light/img/dashboard/ProgressLoader.gif" height="auto" width="50%"
+          alt="Loading........" />
+      </div>
+    </app-panel-user>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6" >
+    <app-panel-user name="Energy Expenses - Current Week" #panelHeaderEecw
+      (refreshTableList)="getEnergyExpensesForCurrentWeek()" (panelExpandCollapse)="maxOrMinScreenEecw()">
+      <div *ngIf="donoutChartCurrentWeekExpensesData && currentWeekzeroDataStatus == false">
+        <ejs-accumulationchart id="eecw" #chartEecw [enableBorderOnMouseMove]='enableBorderOnMouseMove' [tooltip]="tooltip"
+        [legendSettings]="legendSettings" [enableSmartLabels]="enableSmartLabel" height="auto"
+        (textRender)="onTextRender($event)" (chartMouseClick)="onChartMouseClickeecw($event)" class="arrow_right">
+          <e-accumulation-series-collection>
+            <e-accumulation-series [dataSource]="donoutChartCurrentWeekExpensesData"  xName="name" yName="value" type="Pie"
+            innerRadius="40%" radius="auto" tooltipMappingName='valueWithEng' [dataLabel]="pieChartLabel"
+            [palettes]='palette'>
+            </e-accumulation-series>
+          </e-accumulation-series-collection>
+        </ejs-accumulationchart>
+      </div>
+      <div *ngIf="currentWeekzeroDataStatus && !showLoaderForCurrentWeek">
+        <h3 class="text-center noRecordsFound" style="margin-top: 20%;"> No records found!</h3>
+      </div>
+      <div *ngIf="showLoaderForCurrentWeek" class="col-md-16"
+        style="margin-left: 0%; margin-top: 0%; margin-bottom:0% ; height: 300px" align="center">
+        <img src="/assets/street-light/img/dashboard/ProgressLoader.gif" height="auto" width="50%"
+          alt="Loading........" />
+      </div>
+    </app-panel-user>
+  </div>
+  <div class="col-md-6" >
+    <app-panel-user name="Energy Expenses - Last Week" #panelHeaderEelw
+      (refreshTableList)="getEnergyExpensesForLastWeek()" (panelExpandCollapse)="maxOrMinScreenEelw()">
+      <div *ngIf="donoutChartLastWeekExpensesData &&  lastWeekzeroDataStatus== false">
+        <ejs-accumulationchart id="eelw" #chartEelw [enableBorderOnMouseMove]='enableBorderOnMouseMove' [tooltip]="tooltip"
+        [legendSettings]="legendSettings" [enableSmartLabels]="enableSmartLabel" height="auto"
+        (textRender)="onTextRender($event)" (chartMouseClick)="onChartMouseClickeelw($event)" class="arrow_right">
+          <e-accumulation-series-collection >
+            <e-accumulation-series [dataSource]="donoutChartLastWeekExpensesData"  xName="name" yName="value" type="Pie"
+            innerRadius="40%" radius="auto"  tooltipMappingName='valueWithEng'[dataLabel]="pieChartLabel"
+            [palettes]='palette'>
+            </e-accumulation-series>
+          </e-accumulation-series-collection>
+        </ejs-accumulationchart>
+      </div>
+      <div *ngIf="lastWeekzeroDataStatus && !showLoaderForLastWeek">
+        <h3 class="text-center noRecordsFound" style="margin-top: 20%;"> No records found!</h3>
+      </div>
+      <div *ngIf="showLoaderForLastWeek" class="col-md-16"
+        style="margin-left: 0%; margin-top: 0%; margin-bottom:0%; height: 300px" align="center">
+        <img src="/assets/street-light/img/dashboard/ProgressLoader.gif" height="auto" width="50%"
+          alt="Loading........" />
+      </div>
+    </app-panel-user>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <app-panel-user name="Energy Expenses - Current Month" #panelHeaderEecm
+      (refreshTableList)="getEnergyExpensesForCurrentMonth()" (panelExpandCollapse)="maxOrMinScreenEecm()">
+      <div *ngIf="donoutChartCurrentMonthExpensesData &&  currentMonthzeroDataStatus== false">
+        <ejs-accumulationchart  id="eecm" #chartEecm [enableBorderOnMouseMove]='enableBorderOnMouseMove' [tooltip]="tooltip"
+        [legendSettings]="legendSettings" [enableSmartLabels]="enableSmartLabel" height="auto"
+        (textRender)="onTextRender($event)" (chartMouseClick)="onChartMouseClickeecm($event)" class="arrow_right" >
+          <e-accumulation-series-collection>
+            <e-accumulation-series [dataSource]="donoutChartCurrentMonthExpensesData" innerRadius="40%" radius="auto"
+              tooltipMappingName='valueWithEng' xName="name" yName="value" type="Pie" [dataLabel]="pieChartLabel"
+              [palettes]='palette'>
+            </e-accumulation-series>
+          </e-accumulation-series-collection>
+        </ejs-accumulationchart>
+      </div>
+      <div *ngIf="currentMonthzeroDataStatus && !showLoaderForCurrentMonth">
+        <h3 class="text-center noRecordsFound" style="margin-top: 20%;"> No records found!</h3>
+      </div>
+      <div *ngIf="showLoaderForCurrentMonth" class="col-md-16"
+        style="margin-left: 0%; margin-top: 0%; margin-bottom:0% ; height: 300px" align="center">
+        <img src="/assets/street-light/img/dashboard/ProgressLoader.gif" height="auto" width="50%"
+          alt="Loading........" />
+      </div>
+    </app-panel-user>
+  </div>
+  <div class="col-md-6" >
+    <app-panel-user name="Energy Expenses - Last Month" #panelHeaderEelm
+      (refreshTableList)="getEnergyExpensesForLastMonth()" (panelExpandCollapse)="maxOrMinScreenEelm()">
+      <div *ngIf="donoutChartLastMonthExpensesData &&  lastMonthzeroDataStatus== false">
+        <ejs-accumulationchart id="eelm" #chartEelm [enableBorderOnMouseMove]='enableBorderOnMouseMove' [tooltip]="tooltip"
+         [legendSettings]="legendSettings"[enableSmartLabels]="enableSmartLabel" height="auto"
+         (textRender)="onTextRender($event)" (chartMouseClick)="onChartMouseClickeelm($event)" class="arrow_right" >
+          <e-accumulation-series-collection>
+            <e-accumulation-series [dataSource]="donoutChartLastMonthExpensesData" innerRadius="40%" radius="auto"
+              tooltipMappingName='valueWithEng' xName="name" yName="value" type="Pie" [dataLabel]="pieChartLabel"
+              [palettes]='palette'>
+            </e-accumulation-series>
+          </e-accumulation-series-collection>
+        </ejs-accumulationchart>
+      </div>
+      <div *ngIf="lastMonthzeroDataStatus && !showLoaderForLastMonth">
+        <h3 class="text-center noRecordsFound" style="margin-top: 20%;"> No records found!</h3>
+      </div>
+      <div *ngIf="showLoaderForLastMonth" class="col-md-16"
+        style="margin-left: 0%; margin-top: 0%; margin-bottom:0%; height: 300px" align="center">
+        <img src="/assets/street-light/img/dashboard/ProgressLoader.gif" height="auto" width="50%"
+          alt="Loading........" />
+      </div>
+    </app-panel-user>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <app-panel-user name="Energy Expenses - Current Year" #panelHeaderEecy
+      (refreshTableList)="getEnergyExpensesForCurrentYear()" (panelExpandCollapse)="maxOrMinScreenEecy()">
+      <div *ngIf="barChartCurrentYearExpensesData &&  currentYearzeroDataStatus== false">
+        <div id="linkeecy">
+					<a (click)="onClickeecy($event)" style="visibility:hidden; display:inline-block">
+            <button class="button button2" id="categoryeecy"style="display:inline-block;" > Reset </button>
+				 </a>
+					 <p style="visibility:hidden; display:inline-block" id="symboleecy">&nbsp;&nbsp;&gt;&nbsp;&nbsp;</p>
+					 <p id="texteecy" style="display:inline-block; color:black;"></p>
+				 </div>
+        <ejs-chart  id="eecy" #chartEecy (chartMouseClick)="onChartMouseClickeecy($event)"
+			  (chartMouseMove)="onChartMouseMoveeecy($event)" [chartArea]='chartArea' [tooltip]="tooltip"
+        height="auto" [primaryXAxis]="primaryXAxis" [primaryYAxis]="primaryYAxis" (pointRender)='pointRender($event)'>
+          <e-series-collection>
+            <e-series [dataSource]="barChartCurrentYearExpensesData" type="Column" xName="name" yName="value"
+              tooltipMappingName='valueWithEng' [marker]='marker'>
+            </e-series>
+          </e-series-collection>
+        </ejs-chart>
+      </div>
+      <div *ngIf="currentYearzeroDataStatus && !showLoaderForCurrentYear">
+        <h3 class="text-center noRecordsFound" style="margin-top: 20%;"> No records found!</h3>
+      </div>
+      <div *ngIf="showLoaderForCurrentYear" class="col-md-16"
+        style="margin-left: 0%; margin-top: 0%; margin-bottom:0% ; height: 300px" align="center">
+        <img src="/assets/street-light/img/dashboard/ProgressLoader.gif" height="auto" width="50%"
+          alt="Loading........" />
+      </div>
+    </app-panel-user>
+  </div>
+  <div class="col-md-6" >
+    <app-panel-user name="Energy Expenses - Last Year" #panelHeaderEely
+      (refreshTableList)="getEnergyExpensesForLastYear()" (panelExpandCollapse)="maxOrMinScreenEely()">
+      <div *ngIf="barChartLastYearExpensesData &&  lastYearzeroDataStatus== false">
+        <div id="linkeely">
+					<a (click)="onClickeely($event)" style="visibility:hidden; display:inline-block">
+            <button class="button button2" id="categoryeely" style="display:inline-block;"> Reset </button>
+				 </a>
+					 <p style="visibility:hidden; display:inline-block" id="symboleely">&nbsp;&nbsp;&gt;&nbsp;&nbsp;</p>
+					 <p id="texteely" style="display:inline-block; color:black;"></p>
+				 </div>
+        <ejs-chart id="eely" #chartEely  (chartMouseClick)="onChartMouseClickeely($event)"
+			  (chartMouseMove)="onChartMouseMoveeely($event)" [chartArea]='chartArea' [tooltip]="tooltip"
+        height="auto" [primaryXAxis]="primaryXAxis" [primaryYAxis]="primaryYAxis" (pointRender)='pointRender($event)'>
+          <e-series-collection>
+            <e-series [dataSource]="barChartLastYearExpensesData" type="Column" xName="name" yName="value"
+              [marker]='marker' tooltipMappingName='valueWithEng'>
+            </e-series>
+          </e-series-collection>
+        </ejs-chart>
+      </div>
+      <div *ngIf="lastYearzeroDataStatus && !showLoaderForLastYear">
+        <h3 class="text-center noRecordsFound" style="margin-top: 20%;"> No records found!</h3>
+      </div>
+      <div *ngIf="showLoaderForLastYear" class="col-md-16"
+        style="margin-left: 0%; margin-top: 0%; margin-bottom: 0%; height: 300px" align="center">
+        <img src="/assets/street-light/img/dashboard/ProgressLoader.gif" height="auto" width="50%"
+          alt="Loading........" />
+      </div>
+    </app-panel-user>
+  </div>
+</div>
